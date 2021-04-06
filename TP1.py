@@ -47,6 +47,7 @@ V = 230
 LP = [2100, 1800, 1600, 1100, 900, 700, 400, 200, 100]
 LIout2 = [0.75, 0.67, 0.57, 0.48, 0.41, 0.33, 0.21, 0.11, 0.08]
 LdeltaIout2 = [0.192, 0.2, 0.2, 0.2, 0.208, 0.2, 0.184, 0.176, 0.144]
+LdeltaIoutpourcent = [(d)/I for I,d in zip(LIout2[:-2], LdeltaIout2[:-2])]
 LR = [(V**2)/p for p in LP]
 
 plt.plot(LR, LIout2, "r")
@@ -60,13 +61,26 @@ plt.show()
 LR_ = [1/r for r in LR]
 LfL_ = [1/(500*l) for l in Ll]
 
-plt.plot(LR_, LdeltaIout2, "r")
+plt.plot(LR_[:-2], LdeltaIoutpourcent, "r")
 plt.xlabel("1/R")
 plt.ylabel("Delta Iout")
 plt.title("DeltaIout = f(1/R)")
 plt.show()
 
-plt.plot(LfL_, LdeltaIout, "r")
+# a, b, c, e, f = numpy.polyfit(LfL_[:-2],LdeltaIoutpourcent, 4)
+# Lxfit = [0.002 + n/10000 for n in range(150)]
+# LfitIout = [a*d**4 + b*d**3 + c*d**2 + e*d + f for d in Lxfit]
+
+# #plt.plot(LfL_[:-2], LdeltaIoutpourcent, "r")
+# plt.plot(Lxfit, LfitIout, 'b--')
+# plt.xlabel("1/fL")
+# plt.ylabel("Delta Iout")
+# plt.title("DeltaIout = f(1/fL)")
+# plt.show()
+
+
+plt.plot(LfL_[:-2], LdeltaIoutpourcent, "r")
+#plt.plot(LfL_[:-2], LfitIout, 'b--')
 plt.xlabel("1/fL")
 plt.ylabel("Delta Iout")
 plt.title("DeltaIout = f(1/fL)")
@@ -82,3 +96,4 @@ plt.xlabel("1/f")
 plt.ylabel("Delta Iout")
 plt.title("DeltaIout = f(1/f)")
 plt.show()
+
