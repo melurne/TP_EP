@@ -31,15 +31,16 @@ Ll = [0.15, 0.2, 0.3, 0.4, 0.5, 0.7, 0.9, 1.1, 1.2]
 LIout = [0.51, 0.51, 0.50, 0.5, 0.48, 0.48, 0.47, 0.46, 0.46] #deception de antoine
 LdeltaIout = [0.24, 0.16, 0.18, 0.12, 0.104, 0.072, 0.06, 0.044, 0.04]
 
+Lfl = [500*L for L in Ll]
 
 #a, b, c = numpy.polyfit(Lalpha, LVout, 2)
 #Lfit2 = [a*i**2 + b*i + c for i in Ll]
 
-plt.plot(Ll, LdeltaIout, "r")
+plt.plot(Lfl, LIout, "r")
 #plt.plot(Ll, Lfit2, "b--")
 plt.xlabel("L")
-plt.ylabel("Delta Iout")
-plt.title("Delta Iout = f(L)")
+plt.ylabel("Iout")
+plt.title("Iout = f(fL)")
 plt.show()
 
 V = 230
